@@ -45,6 +45,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
     if(value) {
 //    	value=true when that particular email is not mapped to any of the student which is present in the db
     	dao.saveStudent(student);
+    	req.setAttribute("message", "SignedUpSuccessfully Please Login");
     	RequestDispatcher dispatcher=req.getRequestDispatcher("login.jsp");
     	dispatcher.forward(req, resp);
     }else {

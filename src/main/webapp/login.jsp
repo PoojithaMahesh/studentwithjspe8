@@ -9,27 +9,22 @@
 <body>
 <%String message=(String)request.getAttribute("message"); %>
 <%if(message!=null){ %>
-<h1><%=message %></h1>
-<%}else{ %>
-<h1><%="Welcome to Student application Please SignUp" %></h1>
-<% }%>
-<form action="signup" method="post">
-Name::<input type="text" name="name">
-<br>
-<br>
-Address::<input type="text" name="address">
-<br>
-<br>
+ <h1><%=message %></h1>
+<%}else {%>
+<h1><%="Welcome to Login Page" %></h1>
+
+<%} %>
+<form action="login" method="post">
 Email::<input type="email" name="email">
 <br>
 <br>
 Password::<input type="password" name="password">
 <br>
 <br>
-Phone::<input type="tel" name="phone">
-<br>
-<br>
-<input type="submit" value="SIGNUP">
+<input type="submit" value="LOGIN">
+
+
+
 </form>
 </body>
 </html>
