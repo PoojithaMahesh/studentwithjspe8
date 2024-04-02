@@ -14,16 +14,43 @@ public class StudentDao {
 	public EntityManager getEntityManager() {
 		return Persistence.createEntityManagerFactory("vinod").createEntityManager();
 	}
-	public List<Student> getALlStudent(){
-		EntityManager entityManager=getEntityManager();
-		Query  query=entityManager.createQuery("Select s from Student s");
+
+	public List<Student> getALlStudent() {
+		EntityManager entityManager = getEntityManager();
+		Query query = entityManager.createQuery("Select s from Student s");
 		return query.getResultList();
 	}
+
 	public void saveStudent(Student student) {
-	EntityManager entityManager=getEntityManager();
-	EntityTransaction entityTransaction=entityManager.getTransaction();
+		EntityManager entityManager = getEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(student);
 		entityTransaction.commit();
 	}
+
+	public void deleteStudent(int id) {
+		EntityManager entityManager = getEntityManager();
+		Student dbStudent = entityManager.find(Student.class, id);
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.remove(dbStudent);
+		entityTransaction.commit();
+	}
+
+	public Student findStudent(int id) {
+		EntityManager entityManager = getEntityManager();
+		Student dbStudent = entityManager.find(Student.class, id);
+		return dbStudent;
+	}
+
+	public void updateStudent(Student student) {
+		EntityManager entityManager = getEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.merge(student);
+		entityTransaction.commit();
+
+	}
+
 }

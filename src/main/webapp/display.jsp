@@ -19,6 +19,8 @@
 <th>Password</th>
 <th>Fees</th>
 <th>Phone</th>
+<th>Delete</th>
+<th>Update</th>
 </tr>
 
 <%for(Student student:students){ %>
@@ -30,11 +32,11 @@
 <td><%=student.getPassword() %></td>
 <td><%=student.getFees() %></td>
 <td><%=student.getPhone() %></td>
+<td><a href="delete?id=<%=student.getId() %>">DELETE</a></td>
+<td><a href="update?id=<%=student.getId()%>">Update</a></td>
 </tr>
 
 <%} %>
-
-
 
 </table>
 </body>
