@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import studentwithjsp.dao.StudentDao;
 import studentwithjsp.dto.Student;
@@ -18,8 +19,35 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	int id=Integer.parseInt(req.getParameter("id"));
 	StudentDao dao=new StudentDao();
 	Student student=dao.findStudent(id);
-	req.setAttribute("student", student);
-	RequestDispatcher dispatcher=req.getRequestDispatcher("edit.jsp");
-	dispatcher.forward(req, resp);
+	
+	HttpSession httpSession=req.getSession();
+	
+	String name=(String) httpSession.getAttribute("nameofthestudentwhologgedin");
+	if(name!=null) {
+		
+		req.setAttribute("student", student);
+		RequestDispatcher dispatcher=req.getRequestDispatcher("edit.jsp");
+		dispatcher.forward(req, resp);
+		
+	}else {
+		
+		req.setAttribute("message", "Hey Scammer Idiot fellow please login first");
+		RequestDispatcher dispatcher=req.getRequestDispatcher("login.jsp");
+		dispatcher.include(req, resp);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 }
